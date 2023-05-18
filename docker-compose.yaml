@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=todouser
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=todo
+    ports:
+    - '5433:5432'
+    volumes:
+    - ./pgdata:/var/lib/postgresql/data
+
+  web:
+    build: .
+    ports:
+      - '8000:8000'
+    volumes:
+      - .:/app
+    environment:
+      - DJANGO_ENV=development
+    depends_on:
+      - db
+
+  
