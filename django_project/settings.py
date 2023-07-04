@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -79,11 +82,11 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'todoapp',
-        'USER': 'mercy',
-        'PASSWORD': 'root',
-        'HOST': '127.0.0.1',  # For local development, use 'localhost' or '127.0.0.1'
-        'PORT': '5432',  # Default PostgreSQL port is usually '5432'
+        'NAME': os.environ.getenv('DATABASE_NAME'),
+        'USER': os.environ.get('DATABASE_USER'),
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
+        'HOST': os.environ.get('DATABASE_HOST'), # For local development, use 'localhost' or '127.0.0.1'
+        'PORT': os.environ.get('DATABASE_PORT'), # Default PostgreSQL port is usually '5432' 
     }
 }
 
