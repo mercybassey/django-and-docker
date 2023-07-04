@@ -7,7 +7,7 @@ from .forms import TodoForm
 # Todo List View
 def todo_list(request):
     todos = Todo.objects.all()
-    return render(request, 'todo_app/todo_list.html', {'todos': todos})
+    return render(request, 'todo_list.html', {'todos': todos})
 
 # Todo Create View
 
@@ -19,7 +19,7 @@ def todo_create(request):
             return redirect('todo_list')
     else:
         form = TodoForm()
-    return render(request, 'todo_app/todo_create.html', {'form': form})
+    return render(request, 'todo_create.html', {'form': form})
 
 # Todo Update View
 def todo_update(request, pk):
@@ -31,7 +31,7 @@ def todo_update(request, pk):
             return redirect('todo_list')
     else:
         form = TodoForm(instance=todo)
-    return render(request, 'todo_app/todo_update.html', {'form': form})
+    return render(request, 'todo_update.html', {'form': form})
 
 # Todo Delete View
 def todo_delete(request, pk):
@@ -39,4 +39,4 @@ def todo_delete(request, pk):
     if request.method == 'POST':
         todo.delete()
         return redirect('todo_list')
-    return render(request, 'todo_app/todo_delete.html', {'todo': todo})
+    return render(request, 'todo_delete.html', {'todo': todo})

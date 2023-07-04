@@ -1,9 +1,0 @@
-{% extends "todo_app/base.html" %}
-
-{% block content %}
-<form action="{% url 'todo_create' %}" method="POST" autocomplete="off">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save</button>
-</form>
-{% endblock %}
